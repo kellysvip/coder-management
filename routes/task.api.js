@@ -3,6 +3,7 @@ const { deleteTask } = require("../api/controllers/task/deleteTask");
 const { getTaskById } = require("../api/controllers/task/getTaskById");
 const { getTasks } = require("../api/controllers/task/getTasks");
 const { updateTask } = require("../api/controllers/task/updateTask");
+const { createUser } = require("../api/controllers/user/createUser");
 const router = express.Router();
 
 /**

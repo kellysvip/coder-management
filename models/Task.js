@@ -14,7 +14,8 @@ const taskSchema = new mongoose.Schema(
       require: true,
       enum: ["pending", "working", "review", "done", "archive"],
     },
-    referenceTo:{type: mongoose.SchemaTypes.ObjectId, ref: "User"}
+    isDeleted: { type: Boolean, default: false, required: true },
+    referenceTo: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
   },
   {
     timestamps: true,
