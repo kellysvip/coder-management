@@ -2,10 +2,12 @@ const mongoose = require("mongoose");
 const User = require("../../../models/User");
 const Joi = require("joi");
 const { validateSchema, sendResponse } = require("../../../helpers/utils");
+Joi.objectId = require('joi-objectid')(Joi)
 
 const paramsSchema = Joi.object({
   userId: Joi.string().required(),
 });
+
 
 const getUserById = async (req, res, next) => {
   try {

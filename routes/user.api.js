@@ -17,7 +17,7 @@ router.get('/', getUsers)
  * @description Get user by id
  * @access public
  */
- router.get('/:id', getUserById)
+ router.get('/:userId', getUserById)
 
  /**
  * @route POST api/users

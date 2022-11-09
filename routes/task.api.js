@@ -1,9 +1,9 @@
 const express = require("express");
+const { createTask } = require("../api/controllers/task/createTask");
 const { deleteTask } = require("../api/controllers/task/deleteTask");
 const { getTaskById } = require("../api/controllers/task/getTaskById");
 const { getTasks } = require("../api/controllers/task/getTasks");
 const { updateTask } = require("../api/controllers/task/updateTask");
-const { createUser } = require("../api/controllers/user/createUser");
 const router = express.Router();
 
 /**
@@ -15,11 +15,11 @@ const router = express.Router();
 router.get("/", getTasks);
 
 /**
- * @route GET api/tasks/:id
+ * @route GET api/tasks/:taskId
  * @description Get task by id
  * @access public
  */
-router.get("/:id", getTaskById);
+router.get("/:taskId", getTaskById);
 
 /**
  * @route POST api/tasks
@@ -27,21 +27,21 @@ router.get("/:id", getTaskById);
  * @access private, manager
  * @requiredBody: status, des
  */
-router.post("/", createUser);
+router.post("/", createTask);
 
 /**
- * @route UPDATE api/tasks/:id
+ * @route UPDATE api/tasks//:taskId
  * @description Update a task
  * @access private, manager
  * @requiredBody: status, des,...
  */
-router.post("/:id", updateTask);
+router.put("/:taskId", updateTask);
 
 /**
- * @route DELETE api/tasks/:id
+ * @route DELETE api/tasks//:taskId
  * @description Delete a task (soft)
  * @access private, manager
  */
-router.post("/", deleteTask);
+router.delete("/:taskId", deleteTask);
 
 module.exports = router;

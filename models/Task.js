@@ -7,6 +7,7 @@ const taskSchema = new mongoose.Schema(
     },
     description: {
       type: String,
+      default: "none",
       require: false,
     },
     status: {
@@ -16,6 +17,8 @@ const taskSchema = new mongoose.Schema(
     },
     isDeleted: { type: Boolean, default: false, required: true },
     referenceTo: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
+    createdAt: { type: String, require: true },
+    updatedAt: { type: String, require: true },
   },
   {
     timestamps: true,

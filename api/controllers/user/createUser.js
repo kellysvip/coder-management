@@ -10,7 +10,6 @@ const requestSchema = Joi.object({
 const createUser = async (req, res, next) => {
   try {
     const userInfo = validateSchema(requestSchema, req.body);
-    // if (!userInfo) throw new AppError(402, "Bad Request", "Create Car Error");
 
     const created = await User.create(userInfo);
     sendResponse(res, 200, true, { created }, null, "Create User Success");
