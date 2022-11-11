@@ -9,9 +9,13 @@ const requestSchema = Joi.object({
 });
 const getUsers = async (req, res, next) => {
   try {
-    const filter = validateSchema(requestSchema, req.body);
+    const filter = validateSchema(requestSchema, req.query);
 
-    const userInfo = await User.find(filter);
+    const userInfo = await User.find({
+      ...filter,
+      name: { $regex: '.*' + filter.name + '.*' },
+
+    });
     sendResponse(res, 200, true, { userInfo }, null, "Find User Success");
   } catch (error) {
     next(error);

@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const { AppError, sendResponse, validateSchema } = require("../../../helpers/utils");
 const User = require("../../../models/User");
 const Joi = require("joi");
