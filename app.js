@@ -24,7 +24,7 @@ app.use(cors());
 const mongoURI = 'mongodb+srv://admin:admin@cluster0.t244bsh.mongodb.net/coder_management'
 mongoose
   .connect(mongoURI)
-  .then(async () => console.log(`DB connected ${mongoURI}`))
+  .then(async () => console.log(`DB connected ${mongoURI}, ${process.env}`))
   .catch((err) => console.log(err));
 console.log('Environment: ', process.env);
 
