@@ -31,7 +31,7 @@ const updateTask = async (req, res, next) => {
         throw new AppError(400, 'Status is not accept');
     }
     // const options = {new true}
-    const updated = await Task.findByIdAndUpdate(taskId, updateInfo);
+    const updated = await Task.findByIdAndUpdate(taskId, updateInfo, {new: true});
     sendResponse(res, 200, true, { updated }, null, 'Update Success');
   } catch (error) {
     next(error);

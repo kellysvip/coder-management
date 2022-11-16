@@ -1,6 +1,6 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
-const { sendResponse } = require("../../../helpers/utils");
+const { sendResponse, validateSchema } = require("../../../helpers/utils");
 const Task = require("../../../models/Task");
 Joi.objectId = require('joi-objectid')(Joi)
 
@@ -12,7 +12,7 @@ const deleteTask = async (req, res, next) => {
 
   try {
     const { taskId } = validateSchema(paramsSchema, req.params);
-    const deleted = await Task.findByIdAndUpdate(taskId, {isDeleted: true})
+    const deleted = await Task.findByIdAndUpdate(taskId, {isDeleted: true}, {new: true})
     sendResponse(res, 200, true, {deleted}, null, "Delete Success")
   } catch (error) {
     next(error);

@@ -16,9 +16,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 // Connect to MONGODB
-mongoose.connect(process.env.MONGO_URI, () => {
-  console.log(`Connected to Database!, ${process.env.MONGO_URI}`);
-});
+// mongoose.connect(process.env.MONGO_URI, () => {
+//   console.log(`Connected to Database!, ${process.env.MONGO_URI}`);
+// });
+
+const mongoURI = 'mongodb+srv://admin:admin@cluster0.t244bsh.mongodb.net/coder_management'
+mongoose
+  .connect(mongoURI)
+  .then(async () => console.log(`DB connected ${mongoURI}`))
+  .catch((err) => console.log(err));
 
 var indexRouter = require("./routes/index");
 
