@@ -16,16 +16,17 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 // Connect to MONGODB
-// mongoose.connect(process.env.MONGO_URI, () => {
-//   console.log(`Connected to Database!, ${process.env.MONGO_URI}`);
+console.log('MongoURI ', JSON.stringify(process.env))
+mongoose.connect(process.env.MONGO_URI, () => {
+  console.log(`Connected to Database!, ${process.env.MONGO_URI}`);
 
-// });
+});
 
-const mongoURI = 'mongodb+srv://admin:admin@cluster0.t244bsh.mongodb.net/coder_management'
-mongoose
-  .connect(mongoURI)
-  .then(async () => console.log(`DB connected ${mongoURI}, ${JSON.stringify(process.env)}`))
-  .catch((err) => console.log(err));
+// const mongoURI = 'mongodb+srv://admin:admin@cluster0.t244bsh.mongodb.net/coder_management'
+// mongoose
+//   .connect(mongoURI)
+//   .then(async () => console.log(`DB connected ${mongoURI}, ${JSON.stringify(process.env)}`))
+//   .catch((err) => console.log(err));
 console.log('Environment: ', process.env);
 
 
