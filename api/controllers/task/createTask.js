@@ -17,7 +17,6 @@ const requestSchema = Joi.object({
   description: Joi.string(),
   status: Joi.string().case("lower").trim().required(),
   referenceTo: Joi.objectId().allow(null),
-
 });
 const createTask = async (req, res, next) => {
   try {

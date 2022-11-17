@@ -13,6 +13,11 @@ const getTaskById = async (req, res, next) => {
 
   try {
     const {taskId} = validateSchema(paramsSchema, req.params)
+
+    if (taskId) {
+      const findId = await User.exists({_id: taskId});
+      if (!findId) throw new AppError(404, 'Task not found');
+    }
     const taskInfo = await Task.findById(taskId)
     sendResponse(res, 200, true, {taskInfo}, null, "Find Task By Id Success")
   } catch (error) {

@@ -4,7 +4,7 @@ const Joi = require("joi");
 
 const requestSchema = Joi.object({
   name: Joi.string().case('lower').trim().required(),
-  role: Joi.string().case('lower').trim(),
+  role: Joi.string().case('lower').trim().required(),
 });
 const createUser = async (req, res, next) => {
   try {

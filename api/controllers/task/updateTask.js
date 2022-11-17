@@ -21,6 +21,11 @@ const updateTask = async (req, res, next) => {
     const { taskId } = validateSchema(paramsSchema, req.params);
     const updateInfo = validateSchema(requestSchema, req.body);
 
+    if (taskId) {
+      const findTaskId = await User.exists({_id: taskId});
+      if (!findTaskId) throw new AppError(404, 'Task not found');
+    }
+
     if (updateInfo.referenceTo) {
       const findId = await User.exists({_id: updateInfo.referenceTo});
       if (!findId) throw new AppError(404, 'Employee not found');
@@ -30,7 +35,7 @@ const updateTask = async (req, res, next) => {
       if (findStatus.status === 'done' && updateInfo.status !== 'archive')
         throw new AppError(400, 'Status is not accept');
     }
-    // const options = {new true}
+
     const updated = await Task.findByIdAndUpdate(taskId, updateInfo, {new: true});
     sendResponse(res, 200, true, { updated }, null, 'Update Success');
   } catch (error) {

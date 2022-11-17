@@ -12,6 +12,12 @@ const deleteTask = async (req, res, next) => {
 
   try {
     const { taskId } = validateSchema(paramsSchema, req.params);
+
+    if (taskId) {
+      const findId = await User.exists({_id: taskId});
+      if (!findId) throw new AppError(404, 'Task not found');
+    }
+
     const deleted = await Task.findByIdAndUpdate(taskId, {isDeleted: true}, {new: true})
     sendResponse(res, 200, true, {deleted}, null, "Delete Success")
   } catch (error) {
